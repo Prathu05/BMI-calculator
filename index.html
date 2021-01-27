@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<title>BMI Calculator</title>
+			<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+			<link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+		</head>
+		
+		<body>		
+			<div class="container">
+					<h2 class="text-center mb-4">BMI-Calculator</h2>							
+				<!-- Nav tabs -->
+					  <ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item">
+						  <a class="nav-link active" data-toggle="tab" href="#metric-unit">Metric Unit</a>
+						</li>
+						<li class="nav-item">
+						  <a class="nav-link" data-toggle="tab" href="#us-unit">US Unit</a>
+						</li>
+					  </ul>
+
+					  <!-- Tab panes -->
+					  <div class="tab-content">
+						<div id="metric-unit" class="container tab-pane active"><br>
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									<div class="main">									
+										<form action="/action_page.php">
+											<div class="form-group">
+												<label for="age">Your Age :</label>
+												<input type="number" class="form-control" id="age">
+											</div>
+											<div class="form-group form-check">
+												<label for="form-check-label" style="margin-left:-19px;"> Gender :</label><br>
+												<input type="radio" class="form-check-input" name="gender" id="male">Male.&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp
+												<input type="radio" class="form-check-input" name="gender" id="female">Female.<br>
+											</div>
+											<div class="form-group">
+												<label for="height">Enter Height (in cm) : </label>
+												<input type="number" class="form-control" id="height">
+											</div>
+											<div class="form-group">
+												<label for="mass">Enter Mass (in kg) :</label>
+												<input type="number" class="form-control" id="mass">
+											</div><br>
+											<div class="text-center">
+												<a class="btn btn-success" onclick="solve()">Calculate</a>
+											</div>
+										</form>																						
+									</div>
+								</div>	
+								<div class="col-lg-6 col-12 mt-lg-0 mt-3">
+									<div class="container">
+										<div class="d-flex justify-content-between">
+											<p>Your BMI : 
+											<input type="number" class="form-control" id="result" readonly>kg/m<sup>2</sup>.</p>
+										</div><br>
+										<p> 1. Healthy BMI range: 18.5 kg/m2 - 25 kg/m2</p>
+										<p> 2. Healthy weight for the height: 56.7 kgs - 76.6 kgs</p>
+									</div>
+								</div>
+							</div>	
+						</div>
+						<div id="us-unit" class="container tab-pane fade"><br>
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									<div class="main">									
+										<form action="/action_page.php">
+											<div class="form-group">
+												<label for="age">Your Age :</label>
+												<input type="number" class="form-control" id="age">
+											</div>
+											<div class="form-group form-check">
+												<label for="form-check-label" style="margin-left:-19px;"> Gender :</label><br>
+												<input type="radio" class="form-check-input" name="gender" id="male">Male.&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp
+												<input type="radio" class="form-check-input" name="gender" id="female">Female.<br>
+											</div>
+											<div class="form-group">
+												<label for="mass">Enter Height (in ft and inch) :</label>
+												<form class="form-inline">
+													<div class="d-flex justify-content-between">
+													  <input type="number" class="form-control" placeholder="feet" id="feet">
+													  <input type="number" class="form-control" placeholder="inches" id="inch">
+													</div>
+												</form>	
+											</div>
+											<div class="form-group">
+												<label for="height">Enter Mass (pound) : </label>
+												<input type="number" class="form-control" id="mass2">
+											</div><br>
+											<div class="text-center">
+												<a class="btn btn-success" onclick="solve2()">Calculate</a>
+											</div>											
+										</form>																						
+									</div>
+								</div>	
+								<div class="col-lg-6 col-12 mt-lg-0 mt-3">
+									<div class="container">
+										<div class="d-flex justify-content-between">
+											<p>Your BMI : 
+											<input type="number" class="form-control" id="result2" readonly>kg/m<sup>2</sup>.</p>
+										</div><br>
+										<p> 1. Healthy BMI range: 18.5 kg/m2 - 25 kg/m2</p>
+										<p>2. Healthy weight for the height: 132.6 lbs - 179.2 lbs</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					  </div>
+				</div>
+			
+			<script>
+				function solve(){
+					var mass = parseInt ( document.getElementById("mass").value );
+					var height = parseInt ( document.getElementById("height").value );	
+					var meter = (height / 100);	
+					var calculate = ( mass / (meter * meter) );
+					
+					document.getElementById("result").value = calculate;
+				}	
+				
+				function solve2() {
+					var feet = parseInt ( document.getElementById("feet").value );
+					var inch = parseInt ( document.getElementById("inch").value );
+					var mass = parseInt ( document.getElementById("mass2").value );	
+					var itof = (inch / 12);		
+					var totalfeet = (feet + itof);
+					var meter = (totalfeet * 0.3048);
+					var kilo = (mass / 2.20);
+					var calculate = ( kilo / (meter * meter) );
+						
+					document.getElementById("result2").value = calculate;	
+				}			
+							
+			</script>
+		</body>
+	</html>	
